@@ -7,6 +7,12 @@
 </head>
 <body>
     <script>
+
+        let playerSelection;
+        let computerSelection;
+        let playerScore;
+        let computerScore;        
+
         function computerPlay(){
             let choice = Math.floor(Math.random()*3);
             switch(choice){
@@ -17,12 +23,6 @@
                 default:
                     return "Scissors";
             }
-        }
-
-        function transformCase(input){
-            let modifiedString = input.toLowerCase(); // set entire string to lower case
-            let firstLetter = modifiedString.substr(0,1).toUpperCase(); // extract first letter and capitalize
-            return firstLetter + modifiedString.slice(1); // concat first letter with all remaining lowercase letters
         }
         
         function playRound(playerSelection, computerSelection){
@@ -48,28 +48,19 @@
                 return "You lose! " + computerSelection + " beats " + playerSelection;
             }
         }
-
+        //main function to start game
         function game(){
             playerScore = 0;
             computerScore = 0;
-            let playerInput;
-            let inputAccept = false;
             for(let i = 0; i < 5; i++){
-                while(!inputAccept){   // obtain player choice and make sure it is valid
-                    playerInput = prompt("Make your choice! (rock, paper or scissors)");
-                    playerInput = transformCase(playerInput);
-                    if(playerInput === "Rock" || playerInput === "Paper" || playerInput === "Scissors"){
-                        inputAccept=true;
-                        playerSelection = playerInput;
-                    }
-                }
+                playerSelection = playerInput();
                 computerSelection = computerPlay();
                 console.log(playRound(playerSelection, computerSelection));
-                inputAccept=false;
             }
             console.log(chooseWinner(playerScore, computerScore));
         }
 
+        // Display string with end of game winner and score
         function chooseWinner(playerScore, computerScore){
             if(playerScore === computerScore){
                 return "Tie game! " + playerScore + "-" + computerScore;
@@ -80,10 +71,27 @@
             }
         }
 
-        let playerSelection;
-        let computerSelection;
-        let playerScore;
-        let computerScore;
+        function playerInput(){
+            let inputAccept = false;
+            while(!inputAccept){   // obtain player choice and make sure it is valid
+                    let move = prompt("Make your choice! (rock, paper or scissors)");
+                    if(!move){
+                        alert("No canceling!")
+                        continue;
+                    }
+                    let moveLower = move.toLowerCase();
+                    // return properly formatted move choice, or choose again if not valid
+                    if(moveLower === "rock"){
+                        return "Rock";
+                    } else if(moveLower === "paper"){
+                        return "Paper";
+                    } else if(moveLower === "scissors"){
+                        return "Scissors";
+                    } else {
+                        alert("Please make a valid move");
+                    }
+                }
+        }
 
     </script>
 </body>
