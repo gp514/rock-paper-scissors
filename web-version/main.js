@@ -16,20 +16,11 @@ function game(){
     console.log(chooseWinner(playerScore, computerScore));
 }
 
-const rock = document.querySelector("#rock");
-rock.addEventListener("click", function(){
-    console.log(playRound("Rock", computerPlay()));
-});
-
-const paper = document.querySelector("#paper");
-paper.addEventListener("click", function(){
-    console.log(playRound("Paper", computerPlay()));
-});
-
-const scissors = document.querySelector("#scissors");
-scissors.addEventListener("click", function(){
-    console.log(playRound("Scissors", computerPlay()));
-});
+const playerMove = document.querySelector("#move");
+playerMove.addEventListener("click", function(e){
+    const moveName = e.target.id;
+    console.log(playRound(moveName, computerPlay()));
+})
 
 const roundDisplay = document.querySelector("#round");
 const playerScoreDisplay = document.querySelector("#player-score");
@@ -42,11 +33,11 @@ function computerPlay(){
     let choice = Math.floor(Math.random()*3);
     switch(choice){
         case 1:
-            return "Rock";
+            return "rock";
         case 2:
-            return "Paper";
+            return "paper";
         default:
-            return "Scissors";
+            return "scissors";
     }
 }
 
@@ -55,26 +46,26 @@ function playRound(playerSelection, computerSelection){
     round++;
     if(playerSelection === computerSelection){
         resultDisplay.textContent = "Draw";
-    } else if(playerSelection === "Rock" && computerSelection === "Scissors") {
+    } else if(playerSelection === "rock" && computerSelection === "scissors") {
         playerScore++;
         resultDisplay.textContent = "Win";
-    } else if(playerSelection === "Rock" && computerSelection === "Paper") {
+    } else if(playerSelection === "rock" && computerSelection === "paper") {
         computerScore++;
         resultDisplay.textContent = "Lose";
-    } else if(playerSelection === "Paper" && computerSelection === "Rock") {
+    } else if(playerSelection === "paper" && computerSelection === "rock") {
         playerScore++
         resultDisplay.textContent = "Win";
-    } else if(playerSelection === "Paper" && computerSelection === "Scissors") {
+    } else if(playerSelection === "paper" && computerSelection === "scissors") {
         computerScore++;
         resultDisplay.textContent = "Lose";
-    } else if(playerSelection === "Scissors" && computerSelection === "Paper") {
+    } else if(playerSelection === "scissors" && computerSelection === "paper") {
         playerScore++;
         resultDisplay.textContent = "Win";
-    } else if(playerSelection === "Scissors" && computerSelection === "Rock") {
+    } else if(playerSelection === "scissors" && computerSelection === "rock") {
         computerScore++;
         resultDisplay.textContent = "Lose";
     }
-    computerChoiceDisplay.textContent = computerSelection;
+    computerChoiceDisplay.textContent = computerSelection;  
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
     roundDisplay.textContent = round;
