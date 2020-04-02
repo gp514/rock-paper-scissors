@@ -1,0 +1,154 @@
+body {
+    font-family: "Work Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1522032662723-6649e699785f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-template-rows: 100px 0.25fr 3fr 1fr;
+    grid-template-areas:
+        "header header header"
+        ". battleground ."
+        "player battleground computer"
+        ". scoreboard .";
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+}
+
+h1 {
+    display: inline-block;
+    background-color: #FFFFFF80;
+    margin: 5px 0 0 0;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 4em;
+}
+
+#move {
+    grid-area: player;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 6rem;
+}
+
+#move .fa-hand-rock {
+    transform: rotate(90deg);
+}
+
+#move .fa-hand-paper {
+    transform: rotate(90deg);
+}
+
+#move .fa-hand-scissors {
+    transform: scaleX(-1);
+}
+
+#move i {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 125px;
+    height: 125px;
+    border: 3px solid #353434;
+    border-radius: 10px;
+    text-align: center;
+    color: #353434;
+    background-color: #FFFFFFB0;
+    box-shadow: 0 0 3px 1px;
+}
+
+#scoreboard {
+    grid-area: scoreboard;
+    display: flex;
+    justify-content: space-around;
+    background-color: #00000080;
+    border: 3px solid #353434;
+    border-bottom: 0;
+    border-radius: 25px 25px 0 0;
+    color: white;
+    font-family: 'Bungee', cursive;
+}
+
+#scoreboard div {
+    display: inline-block;
+}
+
+#computer {
+    grid-area: computer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+
+#computer-choice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
+    width: 125px;
+    height: 125px;
+    border: 3px solid #353434;
+    border-radius: 10px;
+    color: #353434;
+    background-color: #FFFFFFB0;
+    box-shadow: 0 0 3px 1px;
+}
+
+#computer-choice .fa-hand-rock {
+    transform: scaleX(-1) rotate(90deg); 
+}
+
+#computer-choice .fa-hand-paper {
+    transform:scaleX(-1) rotate(90deg) ; 
+}
+
+.round-container {
+    width: auto;
+    text-align: center;
+}
+
+.round-container h3 {
+    margin: 5px auto;
+}
+
+.round-container span {
+    font-size: 2em;
+}
+
+.player-score-container {
+    width: 150px;
+    text-align: center;
+}
+
+.computer-score-container {
+    width: 150px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+h2 + span {
+    font-size: 4em;
+}
+
+#reset {
+    display: block;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+#round {
+    display: block;
+}

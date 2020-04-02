@@ -1,42 +1,59 @@
 let playerSelection;
 let computerSelection;
-let playerScore = 0;
-let computerScore = 0; 
-let round = 0;       
+let playerScore;
+let computerScore;
+let round;
 
-//main function to start game
-function game(){
-    playerScore = 0;
-    computerScore = 0;
-    for(let i = 0; i < 5; i++){
-        playerSelection = playerInput();
-        computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    console.log(chooseWinner(playerScore, computerScore));
-}
-
-const playerMove = document.querySelector("#move");
-playerMove.addEventListener("click", function(e){
-    const moveName = e.target.id;
-    console.log(playRound(moveName, computerPlay()));
-})
 
 const roundDisplay = document.querySelector("#round");
 const playerScoreDisplay = document.querySelector("#player-score");
 const computerScoreDisplay = document.querySelector("#computer-score");
 const resultDisplay = document.querySelector("#result");
 const computerChoiceDisplay = document.querySelector("#computer-choice");
+const playerMove = document.querySelector("#move");
 
-// randomly generate computer move
+init();
+//start game
+function init(){
+    playerScore = 0;
+    computerScore = 0;
+    round = 0;
+    
+    playerMove.addEventListener("click", moveClick)
+}
+
+// identifies move clicked by user and plays a round with selection
+function moveClick(e){
+    const moveName = e.target.id;
+    console.log(this, e.target);
+    playRound(moveName, computerPlay());
+    if(playerScore === 5 || computerScore === 5){
+        roundEnd();
+    }
+}
+
+// removes move event listeners after round of 5 is complete
+function roundEnd(){
+    playerMove.removeEventListener("click", moveClick);
+}
+
+// randomly generate computer move, display in move box
 function computerPlay(){
+    if(computerChoiceDisplay.firstChild) computerChoiceDisplay.removeChild(computerChoiceDisplay.firstChild);
+    const computerIcon = document.createElement("i");
     let choice = Math.floor(Math.random()*3);
     switch(choice){
         case 1:
+            computerIcon.classList.add("far", "fa-hand-rock");
+            computerChoiceDisplay.appendChild(computerIcon);
             return "rock";
         case 2:
+            computerIcon.classList.add("far", "fa-hand-paper");
+            computerChoiceDisplay.appendChild(computerIcon);
             return "paper";
         default:
+            computerIcon.classList.add("far", "fa-hand-scissors");
+            computerChoiceDisplay.appendChild(computerIcon);
             return "scissors";
     }
 }
@@ -53,7 +70,7 @@ function playRound(playerSelection, computerSelection){
         computerScore++;
         resultDisplay.textContent = "Lose";
     } else if(playerSelection === "paper" && computerSelection === "rock") {
-        playerScore++
+        playerScore++;
         resultDisplay.textContent = "Win";
     } else if(playerSelection === "paper" && computerSelection === "scissors") {
         computerScore++;
@@ -64,22 +81,9 @@ function playRound(playerSelection, computerSelection){
     } else if(playerSelection === "scissors" && computerSelection === "rock") {
         computerScore++;
         resultDisplay.textContent = "Lose";
-    }
-    computerChoiceDisplay.textContent = computerSelection;  
+    } 
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
     roundDisplay.textContent = round;
-}
-
-
-// Display string with end of game winner and score
-function chooseWinner(playerScore, computerScore){
-    if(playerScore === computerScore){
-        return "Tie game! " + playerScore + "-" + computerScore;
-    } else if(playerScore > computerScore){
-        return "You win! " + playerScore + "-" + computerScore;
-    } else {
-        return "You lose! " + computerScore + "-" + playerScore;
-    }
 }
 
