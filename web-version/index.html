@@ -14,14 +14,24 @@
         <h1>ROCK | PAPER | SCISSORS</h1> 
     </header>
 
-    <div id="move">
+    <div class="player-hand" id="move">
         <i id="rock" class="far fa-hand-rock"></i>
         <i id="paper" class="far fa-hand-paper"></i>
         <i id="scissors" class="far fa-hand-scissors"></i>
     </div>
-    <div id="computer">
-        <div id="computer-choice"></div>  
+    
+    <div id="computer" class="computer-hand">
+        <i class="far fa-hand-rock"></i>
+        <i class="far fa-hand-paper"></i>
+        <i class="far fa-hand-scissors"></i>
     </div>
+    
+    <div class="result-area">
+        <div class="player-hand" id="player-choice"></i></div>
+        <div class="computer-hand" id="computer-choice"></div>
+        <span id="result">RESULT</span>
+    </div>
+    
     <div id="scoreboard">
         <div class="player-score-container"><h2>PLAYER</h2><span id="player-score">0</span></div>
         <div class="round-container"><h3>ROUND</h3><span id="round">0</span><br><span id="reset">RESET</span></div>
@@ -29,7 +39,7 @@
         
     </div>
     
-        <div id="result"></div>  
+          
 
     <script src="main.js" type="text/javascript"></script>
 </body>

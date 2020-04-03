@@ -11,6 +11,7 @@ const computerScoreDisplay = document.querySelector("#computer-score");
 const resultDisplay = document.querySelector("#result");
 const computerChoiceDisplay = document.querySelector("#computer-choice");
 const playerMove = document.querySelector("#move");
+const playerHand = document.querySelector("#player-choice");
 
 init();
 //start game
@@ -25,7 +26,11 @@ function init(){
 // identifies move clicked by user and plays a round with selection
 function moveClick(e){
     const moveName = e.target.id;
-    console.log(this, e.target);
+    const newPlayerHand = document.createElement("i");
+    newPlayerHand.classList.add("far", "fa-hand-" + moveName);
+    if(playerHand.firstChild) playerHand.removeChild(playerHand.firstChild);
+    playerHand.appendChild(newPlayerHand);
+    console.log(this, e.target.classList);
     playRound(moveName, computerPlay());
     if(playerScore === 5 || computerScore === 5){
         roundEnd();

@@ -40,19 +40,19 @@ h1 {
     font-size: 6rem;
 }
 
-#move .fa-hand-rock {
+.player-hand .fa-hand-rock {
     transform: rotate(90deg);
 }
 
-#move .fa-hand-paper {
+.player-hand .fa-hand-paper {
     transform: rotate(90deg);
 }
 
-#move .fa-hand-scissors {
+.player-hand .fa-hand-scissors {
     transform: scaleX(-1);
 }
 
-#move i {
+#move i, #computer i {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,6 +64,15 @@ h1 {
     color: #353434;
     background-color: #FFFFFFB0;
     box-shadow: 0 0 3px 1px;
+    box-sizing: border-box;
+}
+
+#move i:hover {
+    background-color: white;
+    border-color: #f0ba0a;
+    border-width: 4px;
+    box-shadow: 0 0 5px 1px #f0ba0a;
+
 }
 
 #scoreboard {
@@ -86,30 +95,17 @@ h1 {
     grid-area: computer;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;  
-}
-
-#computer-choice {
-    display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     font-size: 6rem;
-    width: 125px;
-    height: 125px;
-    border: 3px solid #353434;
-    border-radius: 10px;
-    color: #353434;
-    background-color: #FFFFFFB0;
-    box-shadow: 0 0 3px 1px;
 }
 
-#computer-choice .fa-hand-rock {
-    transform: scaleX(-1) rotate(90deg); 
+.computer-hand .fa-hand-rock {
+    transform: scaleX(-1) rotate(90deg);
 }
 
-#computer-choice .fa-hand-paper {
-    transform:scaleX(-1) rotate(90deg) ; 
+.computer-hand .fa-hand-paper {
+    transform: scaleX(-1) rotate(90deg);
 }
 
 .round-container {
@@ -125,14 +121,50 @@ h1 {
     font-size: 2em;
 }
 
-.player-score-container {
+.player-score-container, .computer-score-container {
     width: 150px;
     text-align: center;
 }
 
-.computer-score-container {
-    width: 150px;
+.result-area {
+    grid-area: battleground;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 6rem;
+}
+
+.result-area div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border: 3px solid #353434;
+    border-radius: 10px;
     text-align: center;
+    color: #353434;
+    background-color: #FFFFFFB0;
+    box-shadow: 0 0 3px 1px;
+    box-sizing: border-box;
+}
+
+.result-area span {
+    margin: 0 auto;
+}
+
+.result-area i {
+    text-align: center;
+}
+
+#result {
+    color: white;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 0 50px;
 }
 
 h2 {
@@ -146,7 +178,16 @@ h2 + span {
 #reset {
     display: block;
     font-size: 1em;
-    margin-top: 20px;
+    margin-top: 15px;
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#reset:hover {
+    border-color: rgb(221, 25, 25);
+    background-color: rgb(221, 25, 25);
+    box-shadow: 0 0 3px 1px rgb(119, 12, 12);
 }
 
 #round {
