@@ -40,11 +40,15 @@ function reset(){
 // identifies move clicked by user and plays a round with selection
 function moveClick(e){
     const moveName = e.target.id;
-    if(e.target.id === "move") return;
+    if(e.target.id === "move") return; // break out and do nothing if not clicking hand signal
+    if(playerHand.firstChild) playerHand.removeChild(playerHand.firstChild); //clear existing move from battleground
+   
+    //display new move in battleground
     const newPlayerHand = document.createElement("i");
     newPlayerHand.classList.add("far", "fa-hand-" + moveName);
-    if(playerHand.firstChild) playerHand.removeChild(playerHand.firstChild);
     playerHand.appendChild(newPlayerHand);
+
+    //play round with chosen player move
     playRound(moveName, computerPlay());
     if(playerScore === 5 || computerScore === 5){
         roundEnd();
@@ -58,23 +62,15 @@ function roundEnd(){
 
 // randomly generate computer move, display in move box
 function computerPlay(){
-    if(computerChoiceDisplay.firstChild) computerChoiceDisplay.removeChild(computerChoiceDisplay.firstChild);
+    if(computerChoiceDisplay.firstChild) computerChoiceDisplay.removeChild(computerChoiceDisplay.firstChild); //remove previous move from battleground
+    
+    let computerMove = randomMove();
+
     const computerIcon = document.createElement("i");
-    let choice = Math.floor(Math.random()*3);
-    switch(choice){
-        case 1:
-            computerIcon.classList.add("far", "fa-hand-rock");
-            computerChoiceDisplay.appendChild(computerIcon);
-            return "rock";
-        case 2:
-            computerIcon.classList.add("far", "fa-hand-paper");
-            computerChoiceDisplay.appendChild(computerIcon);
-            return "paper";
-        default:
-            computerIcon.classList.add("far", "fa-hand-scissors");
-            computerChoiceDisplay.appendChild(computerIcon);
-            return "scissors";
-    }
+    computerIcon.classList.add("far", "fa-hand-" + computerMove);
+    computerChoiceDisplay.appendChild(computerIcon);
+
+    return computerMove;
 }
 
 // compare player and computer selections to determine winner
@@ -110,3 +106,15 @@ function updateScoreboard(){
     roundDisplay.textContent = round;
 }
 
+// choose random move between rock paper and scissors
+function randomMove(){
+    let choice = Math.floor(Math.random()*3);
+    switch(choice){
+        case 1:
+            return "rock";
+        case 2:
+            return "paper";
+        default:
+            return "scissors";
+    }
+}
