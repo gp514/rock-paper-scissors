@@ -164,7 +164,9 @@ h1 {
     text-transform: uppercase;
     font-weight: 700;
     margin: 0 auto;
-    padding: 0 50px;
+    min-width: 100%;
+    height: 71px;
+    text-align: center;
 }
 
 h2 {

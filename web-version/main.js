@@ -12,15 +12,31 @@ const resultDisplay = document.querySelector("#result");
 const computerChoiceDisplay = document.querySelector("#computer-choice");
 const playerMove = document.querySelector("#move");
 const playerHand = document.querySelector("#player-choice");
+const resetButton = document.querySelector("#reset");
 
 init();
 //start game
 function init(){
+    resetButton.addEventListener("click", function(){
+        reset();
+    })
+    reset();
+}
+
+function reset(){
     playerScore = 0;
     computerScore = 0;
     round = 0;
-    
-    playerMove.addEventListener("click", moveClick)
+
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+    roundDisplay.textContent = round;
+    resultDisplay.textContent = "";
+
+    if(playerHand.firstChild) playerHand.removeChild(playerHand.firstChild);
+    if(computerChoiceDisplay.firstChild) computerChoiceDisplay.removeChild(computerChoiceDisplay.firstChild);
+
+    playerMove.addEventListener("click", moveClick);
 }
 
 // identifies move clicked by user and plays a round with selection
